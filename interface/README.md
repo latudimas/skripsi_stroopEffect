@@ -1,2 +1,2 @@
-Interface yang digunakan dalam proses akusisi data Numerical Stroop Task.
-Dibuat Menggunakan Processing Language.
+# interface_processing
+GUI untuk akusisi Data Numerical Stroop Task
