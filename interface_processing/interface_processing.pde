@@ -9,7 +9,7 @@ boolean startProgram; //flag button
 
 //DATA LOGGING
 PrintWriter dataLog, dataDebug;
-String dataLogName = "Saved_Data/" + "DataLog_Jaler_25_10_02_2.txt";
+String dataLogName = "Saved_Data/" + "DataLog_[NAMA]_[TANGGAL]_[DATA].txt";
 
 //IMAGE 
 PImage[] gambarUji = new PImage[31];
