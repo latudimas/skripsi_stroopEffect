@@ -1,4 +1,0 @@
-PROGRAM MULAI [START]	14:59:0.801463
-Mulai Tampil Gambar 1	14:59:2.803441	INPUT	1	KANAN	14:59:3.804123
-Mulai Tampil Gambar 2	14:59:6.807502	INPUT	2	KIRI	14:59:7.808032
-Mulai Tampil Gambar 3	14:59:10.811457	Mulai Tampil Gambar 4	14:59:14.815471	Mulai Tampil Gambar 5	14:59:18.819486	Mulai Tampil Gambar 6	14:59:22.823505	Mulai Tampil Gambar 7	14:59:26.827536	Mulai Tampil Gambar 8	14:59:30.831556	Mulai Tampil Gambar 9	14:59:34.835601	Mulai Tampil Gambar 10	14:59:39.839615	Mulai Tampil Gambar 11	14:59:43.843630	Mulai Tampil Gambar 12	14:59:47.847640	Mulai Tampil Gambar 13	14:59:51.851663	Mulai Tampil Gambar 14	14:59:55.855858	Mulai Tampil Gambar 15	14:59:59.859718	PROGRAM BERHENTI [STOP] 15:0:3.863736
