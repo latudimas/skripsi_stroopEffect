@@ -11,7 +11,7 @@ for i = 1:4
     eStart = 361; % 1.8*200ms
     eStop = 560;  % 2.8*200ms
 	for j = 1:15
-		if eStart <= 11560;
+		if eStart <= 12000;
 			outputCell{1,i}{1,j} = inputData{i}(eStart:eStop);
 
 			eStart = eStop + 601 ; %interval 3 detik
