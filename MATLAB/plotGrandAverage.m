@@ -35,7 +35,7 @@ end
 for i = 1:4
 	tempN = mean(GrandAverage_M(i).NETRAL);
 	figure;
-	plot(tPlot, temp);
+	plot(tPlot, tempN);
 	title(sprintf('Grand Average Kondisi Netral CH%d', i));
 	xlabel('Waktu (ms)'); ylabel('Amplitudo');
 end
