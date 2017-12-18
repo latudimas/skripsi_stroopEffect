@@ -15,10 +15,10 @@ tRangeStop = 60;
 rangeTime = (tRangeStart*fs)+1 : (tRangeStop*fs); %Potong dari 0-60
 
 %% Load Data
-sName = 'Ricahyo';
-dName = sprintf('Data/RAW_%s_03.txt', sName);
+sName = 'Jaler';
+dName = sprintf('Data/RAW_%s_01.txt', sName);
 rawData = load (sprintf('%s', dName));
-rawData = rawData((4699-6):end, 2:5)'; %potong data dari awal program stroop mulai sampai akhir data
+rawData = rawData((6562-6):end, 2:5)'; %potong data dari awal program stroop mulai sampai akhir data
 
 %% RAW Data 
 for i = 1:4
