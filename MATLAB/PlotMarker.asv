@@ -1,0 +1,27 @@
+%  PLOT Dan MARKER 
+
+close all;
+clear;
+
+tPlotStart = -200;
+tPlotStop = 800;
+tPlot = tPlotStart:1000/200:tPlotStop-1; 
+
+sName = {'Ahmad', 'Jaler', 'Mudin', 'Ricahyo'};
+
+
+for x = 1:4
+	fileName = sprintf('matdata/Struct%s', sName{x})
+	load (fileName)
+
+	% Kondisi Kongruen
+	for i = 1:4
+		for j =1:3 
+			fig = figure('visible','off');
+			plot(tPlot,sKondisi(i).KONGRUEN(1,:));
+            title(sprintf('Plot Kongruen %s CH%d Trial ke-%d', sName{x}, i, j));
+            xlabel('Waktu (ms)'); ylabel('Amplitudo');
+            saveas(fig, sprintf('K %s CH%d Trial %d', sName{x}, i, j))
+		end
+    end
+end
