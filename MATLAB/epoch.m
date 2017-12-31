@@ -1,7 +1,8 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%        	   FUNGSI EPOCH            %%
+%=======================================%
+%         	   FUNGSI EPOCH             %
 %          function name: epoch         %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%=======================================%
+
 %Membuat Epoch dengan rentang waktu 1 detik
 %Mulai dari -200 pre-stimulus hingga 800ms setelah stimulus onset
 

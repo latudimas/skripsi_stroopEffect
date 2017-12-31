@@ -1,7 +1,7 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%           FUNGSI CACAH DATA         %%
+%=======================================%
+%            FUNGSI CACAH DATA          %
 %          funct name: cacahData        %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%=======================================%
 
 % Memotong data utuh (Start-Stop Streaming) menjadi bagian per-stimulus
 % Data yang dipotong disimpan kedalam cell array

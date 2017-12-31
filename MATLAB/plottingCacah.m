@@ -1,7 +1,7 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%        FUNGSI PLOTTING CACAH        %%
+%=======================================%
+%         FUNGSI PLOTTING CACAH         %
 %         funct name: cacahData         %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%=======================================%
 
 function plottingCacah(dataInput, timeAxis, tipeData)
 % variabel tipeData yang dimaksud disini adalah apakah data berupa data RAW
@@ -14,6 +14,6 @@ for i = 1:15
     end
     print(sprintf('Plot Stimulus %d Jaler01 %s', i, tipeData), '-dpng');
     movefile(sprintf('Plot Stimulus %d Jaler01 %s.png', i, tipeData), 'Picture\Jaler 01 Coba');
-end 
+end
 
 end %END FUNCTION

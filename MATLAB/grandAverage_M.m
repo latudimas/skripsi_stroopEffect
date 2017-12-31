@@ -1,8 +1,8 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%										%
-%             Grand Averaging           %
-%										%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%=======================================%
+%             GRAND AVERAGING           %
+%=======================================%
+
+% Menghitung rerata total dari beberapa subjek
 
 close all;
 clear;
@@ -29,7 +29,7 @@ end
 
 
 for x = 1:4 % untuk Load Data berdasarkan Nama array
-    
+
 	fileName = sprintf('matdata/Struct%s.mat', sName{x})
 	load (fileName);
 
@@ -37,7 +37,7 @@ for x = 1:4 % untuk Load Data berdasarkan Nama array
 	for i = 1:4
 		temp = mean(sKondisi(i).KONGRUEN);
 		if isempty(GrandAverage_M(i).KONGRUEN)
-			GrandAverage_M(i).KONGRUEN = cat(1, temp); 
+			GrandAverage_M(i).KONGRUEN = cat(1, temp);
 		else
 			GrandAverage_M(i).KONGRUEN = cat (1, GrandAverage_M(i).KONGRUEN, temp);
 		end
@@ -47,7 +47,7 @@ for x = 1:4 % untuk Load Data berdasarkan Nama array
 	for i = 1:4
 		temp = mean(sKondisi(i).INKONGRUEN);
 		if isempty(GrandAverage_M(i).INKONGRUEN)
-			GrandAverage_M(i).INKONGRUEN = cat(1, temp); 
+			GrandAverage_M(i).INKONGRUEN = cat(1, temp);
 		else
 			GrandAverage_M(i).INKONGRUEN = cat (1, GrandAverage_M(i).INKONGRUEN, temp);
 		end
@@ -57,7 +57,7 @@ for x = 1:4 % untuk Load Data berdasarkan Nama array
 	for i = 1:4
 		temp = mean(sKondisi(i).NETRAL);
 		if isempty(GrandAverage_M(i).NETRAL)
-			GrandAverage_M(i).NETRAL = cat(1, temp); 
+			GrandAverage_M(i).NETRAL = cat(1, temp);
 		else
 			GrandAverage_M(i).NETRAL = cat (1, GrandAverage_M(i).NETRAL, temp);
 		end
