@@ -1,6 +1,11 @@
+%=======================================%
+%          FUNGSI VERTIKAL LINE         %
+%          funct name: vline            %
+%=======================================%
+
 function hhh=vline(x,in1,in2)
 % function h=vline(x, linetype, label)
-% 
+%
 % Draws a vertical line on the current axes at the location specified by 'x'.  Optional arguments are
 % 'linetype' (default is 'r:') and 'label', which applies a text label to the graph near the line.  The
 % label appears in the same color as the line.
@@ -10,7 +15,7 @@ function hhh=vline(x,in1,in2)
 %
 % The HandleVisibility property of the line object is set to "off", so not only does it not appear on
 % legends, but it is not findable by using findobj.  Specifying an output argument causes the function to
-% return a handle to the line, so it can be manipulated or deleted.  Also, the HandleVisibility can be 
+% return a handle to the line, so it can be manipulated or deleted.  Also, the HandleVisibility can be
 % overridden by setting the root's ShowHiddenHandles property to on.
 %
 % h = vline(42,'g','The Answer')
@@ -23,7 +28,7 @@ function hhh=vline(x,in1,in2)
 % vline([4 8 12],{'g','r','b'},{'l1','lab2','LABELC'})
 %
 % draws three lines with the appropriate labels and colors.
-% 
+%
 % By Brandon Kuczenski for Kensington Labs.
 % brandon_kuczenski@kensingtonlabs.com
 % 8 November 2001
@@ -77,9 +82,9 @@ else
         label=in2;
     end
 
-    
-    
-    
+
+
+
     g=ishold(gca);
     hold on
 
@@ -94,7 +99,7 @@ else
         else
             text(x-.05*xrange,y(1)+0.1*(y(2)-y(1)),label,'color',get(h,'color'))
         end
-    end     
+    end
 
     if g==0
     hold off

@@ -1,8 +1,6 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%										%
-%        Cetak Grafik Averagin          %
-%										%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%=======================================%
+%           PLOT AVERAGING DATA         %
+%=======================================%
 
 close all;
 clear;
@@ -39,4 +37,3 @@ for i = 1:4
 	title(sprintf('Grand Average Kondisi Netral CH%d', i));
 	xlabel('Waktu (ms)'); ylabel('Amplitudo');
 end
-

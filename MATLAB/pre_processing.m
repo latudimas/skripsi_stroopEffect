@@ -1,8 +1,6 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%										%
+%=======================================%
 %             PRE-PROCESSING            %
-%										%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%=======================================%
 
 close all;
 clear;
@@ -20,7 +18,7 @@ dName = sprintf('Data/RAW_%s_03.txt', sName);
 rawData = load (sprintf('%s', dName));
 rawData = rawData((4699-6):end, 2:5)'; %potong data dari awal program stroop mulai sampai akhir data
 
-%% RAW Data 
+%% RAW Data
 for i = 1:4
 	rawDataCell{i} = rawData(i, (rangeTime));
 end
@@ -36,10 +34,10 @@ aC = conv(aB, aN);
 for i = 1:4
 	filterData{i} = filter(bC, aC, rawDataCell{i});
 %     figure;
-%     plot(filterData{i}); title(sprintf('Channel%d #3', i)); 
+%     plot(filterData{i}); title(sprintf('Channel%d #3', i));
 end
 
-%% Epoch 
+%% Epoch
 % Range Epoch 1 detik (-200 ~ 800ms)
 % INGAT!!!!, patokan perhitungan timing diagram berdasarkan rangeTime
 % detik ke-1 rawData = detik ke-0 filterData
@@ -69,7 +67,7 @@ for i = 1:4
     end
 end
 
-%% Plotting Epoch 
+%% Plotting Epoch
 tPlotStart = -200;
 tPlotStop = 800;
 tPlot = tPlotStart:1000/200:tPlotStop-1; % sumbu X untuk grafik
@@ -140,7 +138,7 @@ for i = 1:4
 	temp = mean(kongruen{1,i}); % hitung rerata dan simpan di temp
 
 	if isempty(sKondisi(i).KONGRUEN)
-		sKondisi(i).KONGRUEN = cat(1, temp); 
+		sKondisi(i).KONGRUEN = cat(1, temp);
 	else
 		sKondisi(i).KONGRUEN = cat (1, sKondisi(i).KONGRUEN, temp);
 	end
@@ -151,7 +149,7 @@ for i = 1:4
 	temp = mean(inkongruen{1,i}); % hitung rerata dan simpan di temp
 
 	if isempty(sKondisi(i).INKONGRUEN)
-		sKondisi(i).INKONGRUEN = cat(1, temp); 
+		sKondisi(i).INKONGRUEN = cat(1, temp);
 	else
 		sKondisi(i).INKONGRUEN = cat (1, sKondisi(i).INKONGRUEN, temp);
 	end
@@ -162,7 +160,7 @@ for i = 1:4
 	temp = mean(netral{1,i}); % hitung rerata dan simpan di temp
 
 	if isempty(sKondisi(i).NETRAL)
-		sKondisi(i).NETRAL = cat(1, temp); 
+		sKondisi(i).NETRAL = cat(1, temp);
 	else
 		sKondisi(i).NETRAL = cat (1, sKondisi(i).NETRAL, temp);
 	end

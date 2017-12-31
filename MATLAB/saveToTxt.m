@@ -1,7 +1,7 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%        FUNGSI SIMPAN DATA .TXT      %%
-%          funct name: saveToTxt        % 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%=======================================%
+%         FUNGSI SIMPAN DATA .TXT       %
+%          funct name: saveToTxt        %
+%=======================================%
 
 % Menyalin data yang disimpan ke text file dengan format .txt
 
@@ -12,7 +12,7 @@
 function saveToTxt(namaFile, dataInput)
 
 for i = 1:4
-    
+
     dataPrint = dataInput{1,i}{1,1};
     %append data ke text file
     namaFile = fopen('DataCampur.txt', 'a');
