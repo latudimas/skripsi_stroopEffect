@@ -37,8 +37,11 @@ for i = 1:4
 %     plot(filterData{i}); title(sprintf('Channel%d #3', i));
 end
 
+<<<<<<< HEAD
 %% save2struct(filterData, sName);
 
+=======
+>>>>>>> 921b2b8a261d82e2eb28e6a723d202e4b3114339
 %% Epoch
 % Range Epoch 1 detik (-200 ~ 800ms)
 % INGAT!!!!, patokan perhitungan timing diagram berdasarkan rangeTime
@@ -116,6 +119,7 @@ cPlot = ['b', 'g', 'r', 'm', 'k']; % colour palette untuk grafik
 %% $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$%
 
 % STRUCT Simpan Mean Data
+<<<<<<< HEAD
 
 % fileName = sprintf('matdata/Struct%s.mat', sName);
 %
@@ -170,3 +174,59 @@ cPlot = ['b', 'g', 'r', 'm', 'k']; % colour palette untuk grafik
 %
 % % save file yang udah diubah
 % save(fileName, 'sKondisi');
+=======
+%fileName = 'avgStruct.mat';
+fileName = sprintf('matdata/Struct%s.mat', sName);
+
+if exist(fileName) == 2
+	load(fileName);
+else
+	sKondisi = struct('KONGRUEN', [], 'INKONGRUEN', [], 'NETRAL', []);
+	% buat struct tiap channel
+	sKondisi(1).KONGRUEN = [];
+	sKondisi(2).KONGRUEN = [];
+	sKondisi(3).KONGRUEN = [];
+	sKondisi(4).KONGRUEN = [];
+
+	% save data di .mat baru
+	save(fileName, 'sKondisi');
+	load(fileName);
+end
+
+% Simpan untuk tiap channel struct
+% Kondisi Kongruen
+for i = 1:4
+	temp = mean(kongruen{1,i}); % hitung rerata dan simpan di temp
+
+	if isempty(sKondisi(i).KONGRUEN)
+		sKondisi(i).KONGRUEN = cat(1, temp);
+	else
+		sKondisi(i).KONGRUEN = cat (1, sKondisi(i).KONGRUEN, temp);
+	end
+end
+
+% Kondisi Inkongruen
+for i = 1:4
+	temp = mean(inkongruen{1,i}); % hitung rerata dan simpan di temp
+
+	if isempty(sKondisi(i).INKONGRUEN)
+		sKondisi(i).INKONGRUEN = cat(1, temp);
+	else
+		sKondisi(i).INKONGRUEN = cat (1, sKondisi(i).INKONGRUEN, temp);
+	end
+end
+
+% Kondisi Netral
+for i = 1:4
+	temp = mean(netral{1,i}); % hitung rerata dan simpan di temp
+
+	if isempty(sKondisi(i).NETRAL)
+		sKondisi(i).NETRAL = cat(1, temp);
+	else
+		sKondisi(i).NETRAL = cat (1, sKondisi(i).NETRAL, temp);
+	end
+end
+
+% save file yang udah diubah
+save(fileName, 'sKondisi');
+>>>>>>> 921b2b8a261d82e2eb28e6a723d202e4b3114339
