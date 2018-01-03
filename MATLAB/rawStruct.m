@@ -1,3 +1,5 @@
+%% Membuat struct raw Data
+
 function rawStruct(rawData, fileName, numTrial)
 
 load(fileName);

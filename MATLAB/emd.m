@@ -1,6 +1,7 @@
 %=======================================%
 %               FUNGSI EMD              %
 %            funct name: emd            %
+%       link:https://goo.gl/Cb2drM      %
 %=======================================%
 
 % EMD:  Emprical mode decomposition

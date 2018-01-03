@@ -37,8 +37,6 @@ for i = 1:4
 %     plot(filterData{i}); title(sprintf('Channel%d #3', i));
 end
 
-%% save2struct(filterData, sName);
-
 %% Epoch
 % Range Epoch 1 detik (-200 ~ 800ms)
 % INGAT!!!!, patokan perhitungan timing diagram berdasarkan rangeTime

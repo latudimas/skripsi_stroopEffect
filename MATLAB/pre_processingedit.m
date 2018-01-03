@@ -28,7 +28,7 @@ rawData = load (sprintf('%s', dName));
 rawData = rawData((4699-6):end, 2:5)'; %potong data dari awal program stroop mulai sampai akhir data
 
 %% Struct Check ----------------------------------------------------------------
-fileName = sprintf('matdata/SubjekData_%s.mat', sName);
+fileName = sprintf('matdata/TESTSubjekData_%s.mat', sName);
 if exist(fileName) == 2
 	sprintf('Exist %s',fileName) % cetak Nama file
 %     load(fileName);

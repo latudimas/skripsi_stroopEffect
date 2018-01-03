@@ -1,3 +1,5 @@
+%% Fungsi mmebuat epoch struct
+
 function epochStruct(kongruen, inkongruen, netral, fileName, nTrial)
 load(fileName);
 

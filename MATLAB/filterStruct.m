@@ -1,3 +1,5 @@
+%% Membuat struct filter
+
 function filterStruct(filterData, fileName, numTrial)
 
 load(fileName);

@@ -13,19 +13,21 @@
 
 function cacah = cacahData(dataInput)
 
-for i = 1:4 %Loop untuk buat cell 4 channel
-    cacahStart = 1;
-    cacahStop = 800;
-    for j = 1:15 %Loop untuk membuat 15 data uji
-        % jika cacahstop >12000, stop
-        if cacahStop < 12800
-            %disp('dalem'); disp(i); disp(j); potong data sesuai time
-            cacah{1,i}{1,j}= dataInput{i}(cacahStart:cacahStop);
+cacahStart = 361;
+cacahStop = 560;
 
-            %update batas potong
-            cacahStart = cacahStop+1;
-            cacahStop = cacahStop+800;
-        end
+dataProcess = dataInput(1,:);
+
+for j = 1:15 %Loop untuk membuat 15 data uji
+    % jika cacahstop >12000, stop
+    if cacahStop <= 12000
+        %disp('dalem'); disp(i); disp(j); potong data sesuai time
+        % cacah{1,i}{1,j}= dataInput{i}(cacahStart:cacahStop);
+        cacah{1,j} = dataProcess(cacahStart:cacahStop);
+
+        %update batas potong
+        cacahStart = cacahStop+601;
+        cacahStop = cacahStart+199;
     end
 end
 
