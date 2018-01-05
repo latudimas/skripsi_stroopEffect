@@ -6,7 +6,7 @@
 % Ahmad [6114 (5914), 4113 (3913), 4363 (4163)]              %
 % Jaler [21523 (21323), 4894 (4694), 5507 (5307)]            % ADD 600 data (3detik) buffer before start
 % Mudin [14562 (14362), 7158 (6958), 6562 (6362)]            % 6114 ==> 5514
-% Ricahyo [8807 (8157), 5445 (5245), 4699 (4499)]            %
+% Ricahyo [8807 (8157), 5445 (4795), 4699 (4049)]            %
 %------------------------------------------------------------%
 
 close all;
@@ -22,8 +22,8 @@ rangeTime = 1:12200; % dari 3 detik sebelum start sampai detik ke-60 (2 detiks s
 
 %% Load Data
 sName = 'Ricahyo'; %subjectName
-trial = '03'; %trial Number in string
-t = 4499;
+trial = '01'; %trial Number in string
+t = 8157;
 nTrial = str2num(trial); %convert string to number for marker
 dName = sprintf('Data/RAW_%s_%s.txt', sName, trial);
 rawData = load (sprintf('%s', dName));
@@ -90,11 +90,11 @@ aL = conv(aBLow, aN);
 %Proses Filtering LOW
 for i = 1:4
 	filterDataLow{i} = filter(bL, aL, rawDataCell{i});
-    filterDataLow{i} = filterDataLow{i}(651:end);
+    filterDataPotong{i} = filterData{i}(651:end);
 end
 
 % Add to Struct Filter LOW
-filterStruct(filterDataLow, 'L',fileName, nTrial);
+filterStruct(filterDataLow, 'L' fileName, nTrial);
 
 %% Epoch
 % Range Epoch 1 detik (-200 ~ 800ms)
