@@ -25,8 +25,7 @@ trial = '03'; %trial Number in string
 nTrial = str2num(trial); %convert string to number for marker
 dName = sprintf('Data/RAW_%s_%s.txt', sName, trial);
 rawData = load (sprintf('%s', dName));
-rawData = rawData((4699-6):end, 2:5)'; %potong data dari awal program stroop mulai sampai akhir data
-
+rawData = rawData((4699-6):end, 2:5)'; % EDIT DISINI COEG <<<<<<<<<<<<<<<<<<<<<<<<<<
 %% Struct Check ----------------------------------------------------------------
 fileName = sprintf('matdata/TESTSubjekData_%s.mat', sName);
 if exist(fileName) == 2
@@ -158,61 +157,3 @@ cPlot = ['b', 'g', 'r', 'm', 'k']; % colour palette untuk grafik
 %     hold on;
 % end
 % hold off;
-
-%% $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$%
-
-% STRUCT Simpan Mean Data
-
-% fileName = sprintf('matdata/Struct%s.mat', sName);
-%
-% if exist(fileName) == 2
-% 	load(fileName);
-% else
-% 	sKondisi = struct('KONGRUEN', [], 'INKONGRUEN', [], 'NETRAL', []);
-% 	% buat struct tiap channel
-% 	sKondisi(1).KONGRUEN = [];
-% 	sKondisi(2).KONGRUEN = [];
-% 	sKondisi(3).KONGRUEN = [];
-% 	sKondisi(4).KONGRUEN = [];
-%
-% 	% save data di .mat baru
-% 	save(fileName, 'sKondisi');
-% 	load(fileName);
-% end
-%
-% % Simpan untuk tiap channel struct
-% % Kondisi Kongruen
-% for i = 1:4
-% 	temp = mean(kongruen{1,i}); % hitung rerata dan simpan di temp
-%
-% 	if isempty(sKondisi(i).KONGRUEN)
-% 		sKondisi(i).KONGRUEN = cat(1, temp);
-% 	else
-% 		sKondisi(i).KONGRUEN = cat (1, sKondisi(i).KONGRUEN, temp);
-% 	end
-% end
-%
-% % Kondisi Inkongruen
-% for i = 1:4
-% 	temp = mean(inkongruen{1,i}); % hitung rerata dan simpan di temp
-%
-% 	if isempty(sKondisi(i).INKONGRUEN)
-% 		sKondisi(i).INKONGRUEN = cat(1, temp);
-% 	else
-% 		sKondisi(i).INKONGRUEN = cat (1, sKondisi(i).INKONGRUEN, temp);
-% 	end
-% end
-%
-% % Kondisi Netral
-% for i = 1:4
-% 	temp = mean(netral{1,i}); % hitung rerata dan simpan di temp
-%
-% 	if isempty(sKondisi(i).NETRAL)
-% 		sKondisi(i).NETRAL = cat(1, temp);
-% 	else
-% 		sKondisi(i).NETRAL = cat (1, sKondisi(i).NETRAL, temp);
-% 	end
-% end
-%
-% % save file yang udah diubah
-% save(fileName, 'sKondisi');
