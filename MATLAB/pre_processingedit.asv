@@ -3,9 +3,9 @@
 %=======================================%
 
 %------------------------ Data Subjek------------------------%
-% Ahmad [6114 (5914), 4113 (3913), 4363 (4163)]              %
-% Jaler [21523 (21323), 4894 (4694), 5507 (5307)]            % ADD 600 data (3detik) buffer before start
-% Mudin [14562 (14362), 7158 (6958), 6562 (6362)]            % 6114 ==> 5514
+% Ahmad [6114 (5464), 4113 (3463), 4363 (3713)]              %
+% Jaler [21523 (20873), 4894 (4244), 5507 (5307)]            % ADD 600 data (3detik) buffer before start
+% Mudin [14562 (13912), 7158 (6508), 6562 (4857)]            % 6114 ==> 5514
 % Ricahyo [8807 (8157), 5445 (4795), 4699 (4049)]            %
 %------------------------------------------------------------%
 
@@ -18,25 +18,19 @@ fs = 200;
 % tRangeStart = 0;
 % tRangeStop = 60;
 % rangeTime = (tRangeStart*fs)+1 : (tRangeStop*fs); %Potong dari 0-60
-rangeTime = 1:12200; % dari 3 detik sebelum start sampai detik ke-60 (2 detiks sebelum END)
+% rangeTime = 1:12200; % dari 3 detik sebelum start sampai detik ke-60 (2 detiks sebelum END)
 
-%% Load Data
-sName = 'Ricahyo'; %subjectName
+%% Load Data--------------------------------------------------------------------
+sName = 'Mudin'; %subjectName
 trial = '01'; %trial Number in string
-t = 8157;
+t = 20873;
 nTrial = str2num(trial); %convert string to number for marker
 dName = sprintf('Data/RAW_%s_%s.txt', sName, trial);
 rawData = load (sprintf('%s', dName));
 rawData = rawData((t-6):(t-7+12650), 2:5)'; % 12650 = 12000  + 650 data buffer, data mulai dari 0, jadi akhirnya harus -1
 
-%% Edit Guide
-% RAW = RAW_Ricahyo_01(8607-6:end,2:5);
-% RAW = RAW_Ricahyo_01(8607-6:end,2:5)';
-% RAWCut = RAW(1:12200);
-% RAWCut = RAW(1:4,1:12200);
-
 %% Struct Check ----------------------------------------------------------------
-fileName = sprintf('matdata/TESTSubjekData_%s.mat', sName);
+fileName = sprintf('matdata/SubjekData_%s.mat', sName);
 if exist(fileName) == 2
 	sprintf('Exist %s',fileName) % cetak Nama file
 %     load(fileName);
@@ -55,17 +49,16 @@ else
 	save(fileName, 'SubjekData');
 	sprintf('Created %s', fileName)
 end
-%-------------------------------------------------------------------------------
 
-%% RAW Data
+%% RAW Data---------------------------------------------------------------------
 for i = 1:4
 	rawDataCell{i} = rawData(i, :);
 end
 
 % Simpan ke struct
-%rawStruct(rawDataCell, fileName, nTrial);
+rawStruct(rawDataCell, fileName, nTrial); % lebar data yang disimpan 12650
 
-%% Filter
+%% Filter-----------------------------------------------------------------------
 [bBLow, aBLow] = butter(2, [0.5 5]/(fs/2)); % BPF 0.5-5Hz
 [bBHigh, aBHigh] = butter(2, [0.5 30]/(fs/2)); % BPF 0.5-30Hz
 [bN, aN] = butter(2, [49 51]/(fs/2), 'stop'); %Notch Filter 49-51
@@ -90,13 +83,13 @@ aL = conv(aBLow, aN);
 %Proses Filtering LOW
 for i = 1:4
 	filterDataLow{i} = filter(bL, aL, rawDataCell{i});
-    filterDataPotong{i} = filterData{i}(651:end);
+    filterDataLow{i} = filterDataLow{i}(651:end);
 end
 
 % Add to Struct Filter LOW
-filterStruct(filterDataLow, 'L' fileName, nTrial);
+filterStruct(filterDataLow, 'L',fileName, nTrial);
 
-%% Epoch
+%% Epoch------------------------------------------------------------------------
 % Range Epoch 1 detik (-200 ~ 800ms)
 % INGAT!!!!, patokan perhitungan timing diagram berdasarkan rangeTime
 % detik ke-1 rawData = detik ke-0 filterData

@@ -10,7 +10,7 @@ for i = 1:4
   % Salin data berukuran 5*200 ke field Kongruen
   if isempty(SubjekData(i).Kongruen) % First time isi ke field
     SubjekData(i).Kongruen = temp;
-  elseif size(SubjekData(i).Kongruen, 1) <=15
+  elseif size(SubjekData(i).Kongruen, 1) < 15
      % append data jika field udah ada yang isi
     SubjekData(i).Kongruen = cat(1, SubjekData(i).Kongruen, temp);
   end
@@ -23,7 +23,7 @@ for i = 1:4
   % Salin data berukuran 5*200 ke field Inkongruen
   if isempty(SubjekData(i).Inkongruen) % First time isi ke field
     SubjekData(i).Inkongruen = temp;
-  elseif size(SubjekData(i).Inkongruen, 1) <=15
+  elseif size(SubjekData(i).Inkongruen, 1) < 15
     SubjekData(i).Inkongruen = cat(1, SubjekData(i).Inkongruen, temp);
   end
 end
@@ -35,7 +35,7 @@ for i = 1:4
   % Salin data berukuran 5*200 ke field Netral
   if isempty(SubjekData(i).Netral) % First time isi ke field
     SubjekData(i).Netral = temp;
-  elseif size(SubjekData(i).Netral, 1) <=15
+  elseif size(SubjekData(i).Netral, 1) < 15
     SubjekData(i).Netral = cat(1, SubjekData(i).Netral, temp);
   end
 end
