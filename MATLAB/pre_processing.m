@@ -104,15 +104,12 @@ for i = 1:4
     for j = 1:15
         switch seq(j)
             case 1
-              %kongruen{1,i}{1,ck} = epochCell{1,i}{1,j};
               kongruen{1,i}(ck,:) = epochCell{1,i}{1,j}; % Shortest Way
             	ck=ck+1;
             case 2
-            	%inkongruen{1,i}{1,ci} = epochCell{1,i}{1,j};
               inkongruen{1,i}(ci,:) = epochCell{1,i}{1,j};
             	ci=ci+1;
             case 3
-            	%netral{1,i}{1,cn} = epochCell{1,i}{1,j};
               netral{1,i}(cn,:) = epochCell{1,i}{1,j};
             	cn=cn+1;
         end
