@@ -2,46 +2,98 @@
 %             PRE-PROCESSING            %
 %=======================================%
 
+%------------------------ Data Subjek------------------------%
+% Ahmad [6114 (5464), 4113 (3463), 4363 (3713)]              %
+% Jaler [21523 (20873), 4894 (4244), 5507 (5307)]            % ADD 600 data (3detik) buffer before start
+% Mudin [14562 (13912), 7158 (6508), 6562 (5912)]            % 6114 ==> 5514
+% Ricahyo [8807 (8157), 5445 (4795), 4699 (4049)]            %
+%------------------------------------------------------------%
+
 close all;
 clear;
 
 fs = 200;
 
 % Range Potong Data Besar
-tRangeStart = 0;
-tRangeStop = 60;
-rangeTime = (tRangeStart*fs)+1 : (tRangeStop*fs); %Potong dari 0-60
+% tRangeStart = 0;
+% tRangeStop = 60;
+% rangeTime = (tRangeStart*fs)+1 : (tRangeStop*fs); %Potong dari 0-60
+% rangeTime = 1:12200; % dari 3 detik sebelum start sampai detik ke-60 (2 detiks sebelum END)
 
-%% Load Data
-sName = 'Ricahyo';
-dName = sprintf('Data/RAW_%s_03.txt', sName);
+%% Load Data--------------------------------------------------------------------
+sName = 'Ricahyo'; %subjectName
+trial = '03'; %trial Number in string
+t = 4049;
+nTrial = str2num(trial); %convert string to number for marker
+dName = sprintf('Data/RAW_%s_%s.txt', sName, trial);
 rawData = load (sprintf('%s', dName));
-rawData = rawData((4699-6):end, 2:5)'; %potong data dari awal program stroop mulai sampai akhir data
+rawData = rawData((t-6):(t-7+12650), 2:5)'; % 12650 = 12000  + 650 data buffer, data mulai dari 0, jadi akhirnya harus -1
 
-%% RAW Data
-for i = 1:4
-	rawDataCell{i} = rawData(i, (rangeTime));
+%% Struct Check ----------------------------------------------------------------
+fileName = sprintf('matdata/SubjekData_%s.mat', sName);
+if exist(fileName) == 2
+	sprintf('Exist %s',fileName) % cetak Nama file
+%     load(fileName);
+%     save(fileName, 'SubjekData');
+else
+	% buat struct dengan 5 field name
+	SubjekData = struct('RAW', [], 'FilterHigh', [], 'FilterLow', [], 'Kongruen', [], 'Inkongruen', [], 'Netral', []);
+
+	% sediakan field untuk 4 Channel
+	SubjekData(1).RAW = [];
+	SubjekData(2).RAW = [];
+	SubjekData(3).RAW = [];
+	SubjekData(4).RAW = [];
+
+	% Save sebagai struct baru
+	save(fileName, 'SubjekData');
+	sprintf('Created %s', fileName)
 end
 
-%% Filter
-[bB, aB] = butter(2, [1 10]/(fs/2)); %BPF 1-10Hz
+%% RAW Data---------------------------------------------------------------------
+for i = 1:4
+	rawDataCell{i} = rawData(i, :);
+end
+
+% Simpan ke struct
+rawStruct(rawDataCell, fileName, nTrial); % lebar data yang disimpan 12650
+
+%% Filter-----------------------------------------------------------------------
+[bBLow, aBLow] = butter(2, [0.5 5]/(fs/2)); % BPF 0.5-5Hz
+[bBHigh, aBHigh] = butter(2, [0.5 30]/(fs/2)); % BPF 0.5-30Hz
 [bN, aN] = butter(2, [49 51]/(fs/2), 'stop'); %Notch Filter 49-51
 
-bC = conv(bB, bN);
-aC = conv(aB, aN);
+% Convolusi High
+bH = conv(bBHigh, bN);
+aH = conv(aBHigh, aN);
 
-% Proses Filtering
+% Proses Filtering HIGH
 for i = 1:4
-	filterData{i} = filter(bC, aC, rawDataCell{i});
-%     figure;
-%     plot(filterData{i}); title(sprintf('Channel%d #3', i));
+    filterDataHigh{i} = filter(bH, aH, rawDataCell{i});
+	filterDataHigh{i} = filterDataHigh{i}(651:end); % Potong 651 karena untuk menghilangkan buffer anomali filter sebanyk 650 data
 end
 
-%% Epoch
+% Add to Struct Filter HIGH
+filterStruct(filterDataHigh, 'H', fileName, nTrial);
+
+% Convolusi Low
+bL = conv(bBLow, bN);
+aL = conv(aBLow, aN);
+
+%Proses Filtering LOW
+for i = 1:4
+	filterDataLow{i} = filter(bL, aL, rawDataCell{i});
+    filterDataLow{i} = filterDataLow{i}(651:end);
+end
+
+% Add to Struct Filter LOW
+filterStruct(filterDataLow, 'L',fileName, nTrial);
+
+%% Epoch------------------------------------------------------------------------
 % Range Epoch 1 detik (-200 ~ 800ms)
 % INGAT!!!!, patokan perhitungan timing diagram berdasarkan rangeTime
 % detik ke-1 rawData = detik ke-0 filterData
-epochCell = epoch(filterData); %pembuatan epoch dari sinyal yang difilter
+epochCell = epoch(filterDataLow); %pembuatan epoch dari sinyal yang difilter
 
 %Pengelompokkan Epoch sesuai Kondisi dan channel
 % "kongruen = 1", "inkongruen = 2", dan "netral = 3"
@@ -52,7 +104,7 @@ for i = 1:4
     for j = 1:15
         switch seq(j)
             case 1
-            	%kongruen{1,i}{1,ck} = epochCell{1,i}{1,j};
+                %kongruen{1,i}{1,ck} = epochCell{1,i}{1,j};
                 kongruen{1,i}(ck,:) = epochCell{1,i}{1,j}; % Shortest Way
             	ck=ck+1;
             case 2
@@ -67,11 +119,14 @@ for i = 1:4
     end
 end
 
+% simpan ke struct
+epochStruct(kongruen, inkongruen, netral, fileName, nTrial);
+
 %% Plotting Epoch
-tPlotStart = -200;
-tPlotStop = 800;
-tPlot = tPlotStart:1000/200:tPlotStop-1; % sumbu X untuk grafik
-cPlot = ['b', 'g', 'r', 'm', 'k']; % colour palette untuk grafik
+% tPlotStart = -200;
+% tPlotStop = 800;
+% tPlot = tPlotStart:1000/200:tPlotStop-1; % sumbu X untuk grafik
+% cPlot = ['b', 'g', 'r', 'm', 'k']; % colour palette untuk grafik
 
 %plot(tPlot, epochCell{1,1}{1,1}); %Plot grafik awal
 %plot(0, min(epochCell{1,1}{1,1}):max(epochCell{1,1}{1,1})); %Plot grafik tegak lurus
@@ -110,61 +165,3 @@ cPlot = ['b', 'g', 'r', 'm', 'k']; % colour palette untuk grafik
 %     hold on;
 % end
 % hold off;
-
-%% $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$%
-
-% STRUCT Simpan Mean Data
-
-% fileName = sprintf('matdata/Struct%s.mat', sName);
-%
-% if exist(fileName) == 2
-% 	load(fileName);
-% else
-% 	sKondisi = struct('KONGRUEN', [], 'INKONGRUEN', [], 'NETRAL', []);
-% 	% buat struct tiap channel
-% 	sKondisi(1).KONGRUEN = [];
-% 	sKondisi(2).KONGRUEN = [];
-% 	sKondisi(3).KONGRUEN = [];
-% 	sKondisi(4).KONGRUEN = [];
-%
-% 	% save data di .mat baru
-% 	save(fileName, 'sKondisi');
-% 	load(fileName);
-% end
-%
-% % Simpan untuk tiap channel struct
-% % Kondisi Kongruen
-% for i = 1:4
-% 	temp = mean(kongruen{1,i}); % hitung rerata dan simpan di temp
-%
-% 	if isempty(sKondisi(i).KONGRUEN)
-% 		sKondisi(i).KONGRUEN = cat(1, temp);
-% 	else
-% 		sKondisi(i).KONGRUEN = cat (1, sKondisi(i).KONGRUEN, temp);
-% 	end
-% end
-%
-% % Kondisi Inkongruen
-% for i = 1:4
-% 	temp = mean(inkongruen{1,i}); % hitung rerata dan simpan di temp
-%
-% 	if isempty(sKondisi(i).INKONGRUEN)
-% 		sKondisi(i).INKONGRUEN = cat(1, temp);
-% 	else
-% 		sKondisi(i).INKONGRUEN = cat (1, sKondisi(i).INKONGRUEN, temp);
-% 	end
-% end
-%
-% % Kondisi Netral
-% for i = 1:4
-% 	temp = mean(netral{1,i}); % hitung rerata dan simpan di temp
-%
-% 	if isempty(sKondisi(i).NETRAL)
-% 		sKondisi(i).NETRAL = cat(1, temp);
-% 	else
-% 		sKondisi(i).NETRAL = cat (1, sKondisi(i).NETRAL, temp);
-% 	end
-% end
-%
-% % save file yang udah diubah
-% save(fileName, 'sKondisi');
