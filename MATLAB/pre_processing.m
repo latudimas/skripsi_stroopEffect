@@ -4,7 +4,7 @@
 
 %------------------------ Data Subjek------------------------%
 % Ahmad [6114 (5464), 4113 (3463), 4363 (3713)]              %
-% Jaler [21523 (20873), 4894 (4244), 5507 (5307)]            % ADD 600 data (3detik) buffer before start
+% Jaler [21523 (20873), 4894 (4244), 5507 (4857)]            % ADD 600 data (3detik) buffer before start
 % Mudin [14562 (13912), 7158 (6508), 6562 (5912)]            % 6114 ==> 5514
 % Ricahyo [8807 (8157), 5445 (4795), 4699 (4049)]            %
 %------------------------------------------------------------%
@@ -15,19 +15,17 @@ fs = 200;
 
 %% Load Data--------------------------------------------------------------------
 sName = 'Ricahyo'; %subjectName
-trial = '01'; %trial Number in string
-t = 8157;
+trial = '03'; %trial Number in string
+t = 4049;
 nTrial = str2num(trial); %convert string to number for marker
 dName = sprintf('Data/RAW_%s_%s.txt', sName, trial);
 rawData = load (sprintf('%s', dName));
 rawData = rawData((t-6):(t-7+12650), 2:5)'; % 12650 = 12000  + 650 data buffer, data mulai dari 0, jadi akhirnya harus -1
 
 %% Struct Check ----------------------------------------------------------------
-fileName = sprintf('matdata/TEST_SubjekData_%s.mat', sName);
+fileName = sprintf('matdata/SubjekData_%s.mat', sName);
 if exist(fileName) == 2
 	sprintf('Exist %s',fileName) % cetak Nama file
-%     load(fileName);
-%     save(fileName, 'SubjekData');
 else
 	% buat struct dengan 5 field name
 	SubjekData = struct('RAW', [], 'FilterHigh', [], 'FilterLow', [], 'Kongruen', [], 'Inkongruen', [], 'Netral', [], 'K_emd', [], 'I_emd', [], 'N_emd', []);
