@@ -1,4 +1,4 @@
-%% Membuat struct raw Data
+%% Membuat struct untuk raw Data
 
 function rawStruct(rawData, fileName, numTrial)
 
