@@ -7,6 +7,8 @@
 % Jaler [21523 (20873), 4894 (4244), 5507 (4857)]            % ADD 600 data (3detik) buffer before start
 % Mudin [14562 (13912), 7158 (6508), 6562 (5912)]            % 6114 ==> 5514
 % Ricahyo [8807 (8157), 5445 (4795), 4699 (4049)]            %
+% Ipon [9342 (8692), 4164 (3514), 10617 (9967)]              %
+% Nia [5503 (4853), 4486 (3836), 3272 (2622)]                %
 %------------------------------------------------------------%
 
 close all;
@@ -14,9 +16,9 @@ clear;
 fs = 200;
 
 %% Load Data--------------------------------------------------------------------
-sName = 'Ricahyo'; %subjectName
+sName = 'Nia'; %subjectName
 trial = '03'; %trial Number in string
-t = 4049;
+t = 2622;
 nTrial = str2num(trial); %convert string to number for marker
 dName = sprintf('Data/RAW_%s_%s.txt', sName, trial);
 rawData = load (sprintf('%s', dName));
