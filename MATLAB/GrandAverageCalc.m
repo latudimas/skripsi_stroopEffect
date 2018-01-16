@@ -1,11 +1,14 @@
 close all;
 clear;
 
-%subjek = {'Ahmad', 'Jaler', 'Mudin', 'Ricahyo'}; % List of Male Subject
-%fileNameNew = sprintf('matdata/GrandAverage_Male.mat'); % For Female Averaging Calculation
-subjek = {'Ipon', 'Nia'};
-fileNameNew = sprintf('matdata/GrandAverage_Female.mat'); % For Female Averaging Calculation
+%% MALE
+subjek = {'Ahmad', 'Jaler', 'Mudin', 'Ricahyo'}; % List of Male Subject
+fileNameNew = sprintf('matdata/GrandAverage_Male.mat'); % For Female Averaging Calculation
+%% FEMALE
+% subjek = {'Ipon', 'Nia'};
+% fileNameNew = sprintf('matdata/GrandAverage_Female.mat'); % For Female Averaging Calculation
 
+%% Struct
 GrandAverage = struct('meanK_EMD', [], 'meanI_EMD', [], 'meanN_EMD', [], 'meanK_ERP', [], 'meanI_ERP', [],'meanN_ERP', [] );
 
 for sub = 1:length(subjek)
