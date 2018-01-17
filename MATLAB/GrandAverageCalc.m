@@ -3,13 +3,13 @@ clear;
 
 %% MALE
 subjek = {'Ahmad', 'Jaler', 'Mudin', 'Ricahyo'}; % List of Male Subject
-fileNameNew = sprintf('matdata/GrandAverage_Male.mat'); % For Female Averaging Calculation
+% fileNameNew = sprintf('matdata/GrandAverage_Male.mat'); % For Female Averaging Calculation
 %% FEMALE
 % subjek = {'Ipon', 'Nia'};
 % fileNameNew = sprintf('matdata/GrandAverage_Female.mat'); % For Female Averaging Calculation
 
 %% Struct
-GrandAverage = struct('meanK_EMD', [], 'meanI_EMD', [], 'meanN_EMD', [], 'meanK_ERP', [], 'meanI_ERP', [],'meanN_ERP', [] );
+% GrandAverage = struct('meanK_EMD', [], 'meanI_EMD', [], 'meanN_EMD', [], 'meanK_ERP', [], 'meanI_ERP', [],'meanN_ERP', [] );
 
 for sub = 1:length(subjek)
   fileNameOrigin = sprintf('matdata/SubjekData_%s.mat', subjek{sub});
@@ -17,16 +17,16 @@ for sub = 1:length(subjek)
 
   for ch = 1:4
     % Kongruen Condition
-    GrandAverage(ch).meanK_EMD(sub,:) = mean(SubjekData(ch).K_emd);
-    GrandAverage(ch).meanK_ERP(sub,:) = mean(SubjekData(ch).Kongruen);
+    SubjekData(ch).meanK_EMD = mean(SubjekData(ch).K_emd);
+    SubjekData(ch).meanK_ERP = mean(SubjekData(ch).Kongruen);
 
     % Inkongruen Condition
-    GrandAverage(ch).meanI_EMD(sub,:) = mean(SubjekData(ch).I_emd);
-    GrandAverage(ch).meanI_ERP(sub,:) = mean(SubjekData(ch).Inkongruen);
+    SubjekData(ch).meanI_EMD = mean(SubjekData(ch).I_emd);
+    SubjekData(ch).meanI_ERP = mean(SubjekData(ch).Inkongruen);
 
     % Netral Condition
-    GrandAverage(ch).meanN_EMD(sub,:) = mean(SubjekData(ch).N_emd);
-    GrandAverage(ch).meanN_ERP(sub,:) = mean(SubjekData(ch).Netral);
+    SubjekData(ch).meanN_EMD = mean(SubjekData(ch).N_emd);
+    SubjekData(ch).meanN_ERP = mean(SubjekData(ch).Netral);
   end
-  save(fileNameNew, 'GrandAverage');
+  save(fileNameOrigin, 'SubjekData');
 end
