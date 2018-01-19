@@ -1,3 +1,5 @@
+%% Plotting Instantaneous Frequency Dari IMF
+% Yang ditampilkan hanya 1/2 dari IMF
 close all;
 
 load('matdata/SubjekData_Ahmad.mat');
