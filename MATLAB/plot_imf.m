@@ -1,3 +1,6 @@
+%% Plotting IMF
+% Membuat plot berdasarkan IMF yang dihasilkan
+
 close all;
 clear;
 

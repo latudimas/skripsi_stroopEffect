@@ -1,3 +1,5 @@
+%% Plotting Grand Average dari tiap Subjek
+% Output contoh dapat dilihat di Folder ../Pictures/Average New
 close all;
 clear;
 

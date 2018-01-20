@@ -1,3 +1,7 @@
+%% Menghitung Nilai IMF
+% Input berupa data rerata tiap Kondisi
+% Output berupa matrik dengan dimensi (row, column)
+
 close all;
 clear;
 

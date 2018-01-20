@@ -1,4 +1,4 @@
-% Fungsi Pengelompokan Epoch menjadi 3 kategori
+%% Fungsi Pengelompokan Epoch menjadi 3 kategori
 % K = Kelompok Kongruen
 % I = Kelompok Inkongruen
 % N = Kelompok Netral

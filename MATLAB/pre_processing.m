@@ -76,7 +76,7 @@ aL = conv(aBLow, aN);
 %Proses Filtering LOW
 for i = 1:4
 	filterDataLow{i} = filter(bL, aL, rawDataCell{i});
-  filterDataLow{i} = filterDataLow{i}(651:end);
+	filterDataLow{i} = filterDataLow{i}(651:end);
 end
 
 % Add to Struct Filter LOW
