@@ -2,8 +2,8 @@
 
 Berisi program untuk implementasi proses pengolahan sinyal EEG menggunakan aplikasi MATLAB. 
 
-##DATA
+## DATA
 Berisi data EEG responden dalam format .txt
 
-##Picture
+## Picture
 Berisi hasil pre-processing beberaa responden
