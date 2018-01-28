@@ -1,4 +1,4 @@
-# Signal Processing Implementation Using MATLAB
+# Signal Pre-Processing Using MATLAB
 
 Berisi program untuk implementasi proses pengolahan sinyal EEG menggunakan aplikasi MATLAB. 
 
