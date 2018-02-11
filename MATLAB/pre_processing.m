@@ -16,9 +16,9 @@ clear;
 fs = 200;
 
 %% Load Data--------------------------------------------------------------------
-sName = 'Ipon'; %subjectName
+sName = 'Nia'; %subjectName
 trial = '03'; %trial Number in string
-t = 9967;
+t = 2622;
 nTrial = str2num(trial); %convert string to number for marker
 dName = sprintf('Data/RAW_%s_%s.txt', sName, trial);
 rawData = load (sprintf('%s', dName));
