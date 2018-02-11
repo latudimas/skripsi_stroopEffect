@@ -1,6 +1,7 @@
 close all;
 clear;
 
+%% Bukan menghitung Grand Average, tapi menghitung rerata total tiap subjek
 %% MALE
 % subjek = {'Ahmad', 'Jaler', 'Mudin', 'Ricahyo'}; % List of Male Subject
 % fileNameNew = sprintf('matdata/GrandAverage_Male.mat'); % For Female Averaging Calculation
