@@ -6,14 +6,15 @@ close all;
 clear;
 
 %% MALE
-subjek = {'Ahmad', 'Jaler', 'Mudin', 'Ricahyo'}; % List of Male Subject
+% subjek = {'Ahmad', 'Jaler', 'Mudin', 'Ricahyo'}; % List of Male Subject
 % fileNameNew = sprintf('matdata/IMF_%s.mat',subjek); % For Female Averaging Calculation
 %% FEMALE
 % subjek = {'Ipon', 'Nia'};
 % fileNameNew = sprintf('matdata/GrandAverage_Female.mat'); % For Female Averaging Calculation
 
-for sub = 1: length(subjek)
-  fileNameOrigin = sprintf('matdata/SubjekData_%s.mat', subjek{sub});
+% for sub = 1: length(subjek)
+  % fileNameOrigin = sprintf('matdata/SubjekData_%s.mat', subjek{sub});
+  fileNameOrigin = sprintf('matdata/SubjekData_Nia.mat')
   load(fileNameOrigin);
 
   for ch = 1:4
@@ -30,4 +31,4 @@ for sub = 1: length(subjek)
     SubjekData(ch).IMF_Netral = temp;
   end
   save(fileNameOrigin, 'SubjekData');
-end
+% end
