@@ -41,6 +41,7 @@
 for ch = 1:4 
     % KONGRUEN
     temp = FusionData(ch).K;
+    temp = smooth(temp, 0.1, 'moving');
     figure;
     plot(tPlot, temp(1,:), tPlot, temp(2,:));
     title(sprintf('Grand Average Subjek Male vs Female Kongruen Channel %d', ch));
@@ -49,6 +50,7 @@ for ch = 1:4
 
     % INKONGRUEN
     temp = FusionData(ch).I;
+    temp = smooth(temp, 0.1, 'moving');
     figure;
     plot(tPlot, temp(1,:), tPlot, temp(2,:));
     title(sprintf('Grand Average Subjek Male vs Female Inkongruen Channel %d', ch));
@@ -56,7 +58,8 @@ for ch = 1:4
     legend('Male', 'Female');
 
     % NETRAL
-    temp = FusionData(ch).I;
+    temp = FusionData(ch).N;
+    temp = smooth(temp, 0.1, 'moving');
     figure;
     plot(tPlot, temp(1,:), tPlot, temp(2,:));
     title(sprintf('Grand Average Subjek Male vs Female Netral Channel %d', ch));
