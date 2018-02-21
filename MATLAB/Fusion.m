@@ -37,32 +37,36 @@
 
 
 %% Plot Data
-
+load('matdata/FusionData.mat');
+tPlot = -200:1000/200:799;
 for ch = 1:4 
     % KONGRUEN
     temp = FusionData(ch).K;
-    temp = smooth(temp, 0.1, 'moving');
+    % temp = smooth(temp, 0.1, 'moving');
     figure;
-    plot(tPlot, temp(1,:), tPlot, temp(2,:));
-    title(sprintf('Grand Average Subjek Male vs Female Kongruen Channel %d', ch));
-    xlabel('Waktu(ms)'); ylabel('Amplitudo (µV)');
+    % plot(tPlot, temp(1,:), tPlot, temp(2,:));
+    plot(tPlot, smooth(temp(1,:), 0.1, 'moving'), tPlot, smooth(temp(2,:), 0.1, 'moving')); %SMOOTHING DATA
+    title(sprintf('Grand Average Subjek Male vs Female KONGRUEN Channel %d', ch));
+    xlabel('Waktu(ms)'); ylabel('Amplitudo (�V)');
     legend('Male', 'Female');
 
     % INKONGRUEN
     temp = FusionData(ch).I;
-    temp = smooth(temp, 0.1, 'moving');
+    % temp = smooth(temp, 0.1, 'moving');
     figure;
-    plot(tPlot, temp(1,:), tPlot, temp(2,:));
-    title(sprintf('Grand Average Subjek Male vs Female Inkongruen Channel %d', ch));
-    xlabel('Waktu(ms)'); ylabel('Amplitudo (µV)');
+    % plot(tPlot, temp(1,:), tPlot, temp(2,:));
+    plot(tPlot, smooth(temp(1,:), 0.1, 'moving'), tPlot, smooth(temp(2,:), 0.1, 'moving')); %SMOOTHING DATA
+    title(sprintf('Grand Average Subjek Male vs Female INKONGRUEN Channel %d', ch));
+    xlabel('Waktu(ms)'); ylabel('Amplitudo (�V)');
     legend('Male', 'Female');
 
     % NETRAL
     temp = FusionData(ch).N;
-    temp = smooth(temp, 0.1, 'moving');
+    % temp = smooth(temp, 0.1, 'moving');
     figure;
-    plot(tPlot, temp(1,:), tPlot, temp(2,:));
-    title(sprintf('Grand Average Subjek Male vs Female Netral Channel %d', ch));
-    xlabel('Waktu(ms)'); ylabel('Amplitudo (µV)');
+    % plot(tPlot, temp(1,:), tPlot, temp(2,:));
+    plot(tPlot, smooth(temp(1,:), 0.1, 'moving'), tPlot, smooth(temp(2,:), 0.1, 'moving')); %SMOOTHING DATA
+    title(sprintf('Grand Average Subjek Male vs Female NETRAL Channel %d', ch));
+    xlabel('Waktu(ms)'); ylabel('Amplitudo (�V)');
     legend('Male', 'Female');
 end
