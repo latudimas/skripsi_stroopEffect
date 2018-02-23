@@ -16,19 +16,19 @@ for sub = 1:length(subjekMale)
         % KONGRUEN
         temp = SubjekData(ch).meanK_ERP;
         rmsK = rms(temp); % calc RMS signal
-        energyK = rmsK*N; % hitung energy
+        energyK = rmsK*rmsK*N; % hitung energy
         SubjekData(ch).energyK = energyK; % tambah data ke struct 
 
         % INKONGRUEN
         temp = SubjekData(ch).meanI_ERP;
         rmsI = rms(temp); % calc RMS signal
-        energyI = rmsI*N; % hitung energy
+        energyI = rmsI*rmsI*N; % hitung energy
         SubjekData(ch).energyI = energyI; % tambah data ke struct
 
         % NETRAL
         temp = SubjekData(ch).meanN_ERP;
         rmsN = rms(temp); % calc RMS signal
-        energyN = rmsN*N; % hitung energy
+        energyN = rmsN*rmsN*N; % hitung energy
         SubjekData(ch).energyN = energyN; % tambah data ke struct
     end
     save(fileName, 'SubjekData');
@@ -48,19 +48,19 @@ for sub = 1:length(subjekFemale)
         % KONGRUEN
         temp = SubjekData(ch).meanK_ERP;
         rmsK = rms(temp); % calc RMS signal
-        energyK = rmsK*N; % hitung energy
+        energyK = rmsK*rmsK*N; % hitung energy
         SubjekData(ch).energyK = energyK; % tambah data ke struct 
 
         % INKONGRUEN
         temp = SubjekData(ch).meanI_ERP;
         rmsI = rms(temp); % calc RMS signal
-        energyI = rmsI*N; % hitung energy
+        energyI = rmsI*rmsI*N;% hitung energy
         SubjekData(ch).energyI = energyI; % tambah data ke struct
 
         % NETRAL
         temp = SubjekData(ch).meanN_ERP;
         rmsN = rms(temp); % calc RMS signal
-        energyN = rmsN*N; % hitung energy
+        energyN = rmsN*rmsN*N; % hitung energy
         SubjekData(ch).energyN = energyN; % tambah data ke struct
     end
     save(fileName, 'SubjekData');
