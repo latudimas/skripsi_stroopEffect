@@ -9,6 +9,7 @@
 % Ricahyo [8807 (8157), 5445 (4795), 4699 (4049)]            %
 % Ipon [9342 (8692), 4164 (3514), 10617 (9967)]              %
 % Nia [7637 (6987), 4486 (3836), 3272 (2622)]                %
+% Peni [10703 (10053), 3961 (3311), 8327 (7677)]
 %------------------------------------------------------------%
 
 close all;
@@ -16,9 +17,9 @@ clear;
 fs = 200;
 
 %% Load Data--------------------------------------------------------------------
-sName = 'Nia'; %subjectName
+sName = 'Peni'; %subjectName
 trial = '03'; %trial Number in string
-t = 2622;
+t = 7677;
 nTrial = str2num(trial); %convert string to number for marker
 dName = sprintf('Data/RAW_%s_%s.txt', sName, trial);
 rawData = load (sprintf('%s', dName));
