@@ -6,7 +6,7 @@ clear;
 % subjek = {'Ahmad', 'Jaler', 'Mudin', 'Ricahyo'}; % List of Male Subject
 % fileNameNew = sprintf('matdata/GrandAverage_Male.mat'); % For Female Averaging Calculation
 %% FEMALE
-subjek = {'Ipon', 'Nia'};
+subjek = {'Peni'};
 % fileNameNew = sprintf('matdata/GrandAverage_Female.mat'); % For Female Averaging Calculation
 
 %% Struct
