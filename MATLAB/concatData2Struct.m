@@ -4,6 +4,8 @@
 fileTarget = 'matdata/GrandAverage_Female.mat';
 if exist(fileTarget) == 2
     disp(sprintf('File Exist: %s ', fileTarget));
+    load(fileTarget);
+    disp('Open file Target : GrandAverage_Female.mat');
 else
     GrandAverage = struct('meanK_ERP', [], 'meanI_ERP', [], 'meanN_ERP', []);
     
@@ -20,7 +22,7 @@ end
 
 % Nama Subjek FEMALE
 % subName = {'Nia', 'Ipon'}; % #1
-subName = {'Peni'}; % #2
+subName = {'Sania', 'Nia2'}; % #2
 
 for sub = 1: length(subName);
     % Buka struct data subjek
@@ -32,17 +34,17 @@ for sub = 1: length(subName);
     for ch = 1:4
         disp(sprintf('Channel : %d', ch ));
         % KONGRUEN
-        temp = SubjekData(ch).meanK_ERP; % Peni
+        temp = SubjekData(ch).meanK_ERP; % Peni, Sania, Nia2
         % temp = SubjekData(ch).NewMeanK_ERP; % Nia dan Ipon only
         GrandAverage(ch).meanK_ERP =cat(1, GrandAverage(ch).meanK_ERP, temp); 
 
         % INKONGRUEN
-        temp = SubjekData(ch).meanI_ERP; % Peni
+        temp = SubjekData(ch).meanI_ERP; % Peni, Sania, Nia2
         % temp =  SubjekData(ch).NewMeanI_ERP; % Nia dan Ipon only
         GrandAverage(ch).meanI_ERP =cat(1, GrandAverage(ch).meanI_ERP, temp); 
 
         % NETRAL
-        temp = SubjekData(ch).meanN_ERP; % Peni
+        temp = SubjekData(ch).meanN_ERP; % Peni, Sania, Nia2
         % temp =  SubjekData(ch).NewMeanN_ERP; % Nia dan Ipon only
         GrandAverage(ch).meanN_ERP =cat(1, GrandAverage(ch).meanN_ERP, temp); 
     end

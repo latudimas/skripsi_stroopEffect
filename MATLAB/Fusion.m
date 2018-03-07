@@ -1,7 +1,7 @@
 %% LET COOK THEM TOGETHER HAHAHAH!!!!!
 
 %---------------------------------------------------------------------
-% % Male First (Gender Equality)
+%%%%%%%%%%%%%%%%%%% Male First %%%%%%%%%%%%%%%%%%%%%%%%%%
 % load('matdata/GrandAverage_Male.mat');
 % urut = 1;
 % FusionData = struct('K', [], 'I', [], 'N', []);
@@ -17,21 +17,21 @@
 %     FusionData(ch).N(urut,:) =  mean(GrandAverage(ch).meanN_ERP);        
 % end
 
-% % Female Data
-% load('matdata/NewGrandAverageFemale.mat');
+%%%%%%%%%%%%%%%%%%%%%% Female Data %%%%%%%%%%%%%%%%%%%%%
+% load('matdata/GrandAverage_Female.mat');
 % urut =2;
-
+% 
 % for ch = 1:4
 %     % KONGRUEN
-%     FusionData(ch).K(urut,:) =  NewGrandAverage(ch).GrandAvgK;
-    
+%     FusionData(ch).K(urut,:) =  mean(GrandAverage(ch).meanK_ERP(2:end,:));
+%     
 %     % INKONGRUEN
-%     FusionData(ch).I(urut,:) =  NewGrandAverage(ch).GrandAvgI;
-
+%     FusionData(ch).I(urut,:) =  mean(GrandAverage(ch).meanI_ERP(2:end,:));
+% 
 %     % KONGRUEN
-%     FusionData(ch).N(urut,:) =  NewGrandAverage(ch).GrandAvgN;        
+%     FusionData(ch).N(urut,:) =  mean(GrandAverage(ch).meanK_ERP(2:end,:));        
 % end
-
+% 
 % save('matdata/FusionData.mat', 'FusionData');
 %---------------------------------------------------------------------
 

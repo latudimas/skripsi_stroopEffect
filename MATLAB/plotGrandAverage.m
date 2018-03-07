@@ -10,7 +10,7 @@ load('matdata/GrandAverage_Female.mat');
 
 tPlot = -200:1000/200:799;
 cPlot = ['b', 'g', 'r', 'm', 'k'];
-n = 0.1
+n = 0.1;
 
 for ch=1:4
 %   %% Kongruen Plot
