@@ -1,18 +1,11 @@
+%% Menghitung rerata dari epoch tiap kondisi
 close all;
 clear;
 
-%% Bukan menghitung Grand Average, tapi menghitung rerata total tiap subjek
-%% MALE
-% subjek = {'Ahmad', 'Jaler', 'Mudin', 'Ricahyo'}; % List of Male Subject
-% fileNameNew = sprintf('matdata/GrandAverage_Male.mat'); % For Female Averaging Calculation
-%% FEMALE
-subjek = {'Sania', 'Nia2'};
-% fileNameNew = sprintf('matdata/GrandAverage_Female.mat'); % For Female Averaging Calculation
-
-%% Struct
-% GrandAverage = struct('meanK_EMD', [], 'meanI_EMD', [], 'meanN_EMD', [], 'meanK_ERP', [], 'meanI_ERP', [],'meanN_ERP', [] );
+subjek = {'Ahmad', 'Jaler', 'Mudin', 'Ricahyo', 'Nia', 'Peni', 'Sania', 'Nia2'};
 
 for sub = 1:length(subjek)
+  disp(subjek(sub));
   fileNameOrigin = sprintf('matdata/SubjekData_%s.mat', subjek{sub});
   load(fileNameOrigin);
 

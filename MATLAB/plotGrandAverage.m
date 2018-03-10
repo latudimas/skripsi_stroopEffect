@@ -56,13 +56,18 @@ for ch=1:4
   GrandAvgK = mean(GrandAverage(ch).meanK_ERP);
   GrandAvgI = mean(GrandAverage(ch).meanI_ERP);
   GrandAvgN = mean(GrandAverage(ch).meanN_ERP);
+  
   figure;
   plot(tPlot, GrandAvgK, tPlot, GrandAvgI, tPlot, GrandAvgN); % Non Smoothing Data
+  title(sprintf('Grand Average Non-Smooth Female Subject All Condition Channel %d', ch));
+  xlabel('Waktu(ms)'); ylabel('Amplitudo');
+  legend('Kongruen', 'Inkongruen', 'Netral');
+  
   figure;
   plot(tPlot, smooth(GrandAvgK, n, 'moving'), tPlot, smooth(GrandAvgI, n, 'moving'), tPlot, smooth(GrandAvgN, n, 'moving'));
-  title(sprintf('Grand Average Female Subject All Condition Channel %d', ch));
-  xlabel('Waktu(ms)'); ylabel('Amplitudo')
-  legend('Kongruen', 'Inkongruen', 'Netral')
+  title(sprintf('Grand Average Smooth Female Subject All Condition Channel %d', ch));
+  xlabel('Waktu(ms)'); ylabel('Amplitudo');
+  legend('Kongruen', 'Inkongruen', 'Netral');
 
   % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   % GrandAverage(ch).GrandAvg_Kongruen = GrandAvgK;

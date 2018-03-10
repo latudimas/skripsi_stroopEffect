@@ -1,11 +1,11 @@
 % moving data from "SubjekData" Struct to "GrandAverage_M/F" Struct
 
 % Lokasi Data Target
-fileTarget = 'matdata/GrandAverage_Female.mat';
+fileTarget = 'matdata/GrandAverage_Male.mat';
 if exist(fileTarget) == 2
     disp(sprintf('File Exist: %s ', fileTarget));
-%     load(fileTarget);
-    disp('Open file Target : GrandAverage_Female.mat');
+    load(fileTarget);
+    disp('Open file Target : GrandAverage_Male.mat');
 else
     GrandAverage = struct('meanK_ERP', [], 'meanI_ERP', [], 'meanN_ERP', [], 'meanK_EMD', [], 'meanI_EMD', [], 'meanN_EMD', []);
     
@@ -22,8 +22,8 @@ end
 
 % subName = {'Nia', 'Ipon'}; % #1
 % subName = {'Sania', 'Nia2'}; % #2
-subName = {'Nia', 'Peni', 'Sania', 'Nia2'}; % FEMALE
-% subName = {'Ahmad', 'Jaler', 'Mudin', 'Ricahyo'}; %MALE
+% subName = {'Nia', 'Peni', 'Sania', 'Nia2'}; % FEMALE
+subName = {'Ahmad', 'Jaler', 'Mudin', 'Ricahyo'}; %MALE
 
 
 for sub = 1: length(subName);
@@ -40,31 +40,24 @@ for sub = 1: length(subName);
         temp2 = SubjekData(ch).meanK_EMD; % Sinyal filter High
         % temp = SubjekData(ch).NewMeanK_ERP; % Nia dan Ipon only
         GrandAverage(ch).meanK_ERP =cat(1, GrandAverage(ch).meanK_ERP, temp1); 
-        GrandAverage(ch).meanK_EMD =cat(1, GrandAverage(ch).meanK_EMD, temp2);
-        GrandAverage(ch).avgTotalK_ERP = mean(GrandAverage(ch).meanK_ERP); % Rerata total ERP
-        GrandAverage(ch).avgTotalK_EMD = mean(GrandAverage(ch).meanK_EMD); % Rerata total EMD
+        GrandAverage(ch).meanK_EMD =cat(1, GrandAverage(ch).meanK_EMD, temp2); 
+
 
         % INKONGRUEN
         temp1 = SubjekData(ch).meanI_ERP; % Sinyal filter Low
         temp2 = SubjekData(ch).meanI_EMD; % Sinyal filter High
         % temp =  SubjekData(ch).NewMeanI_ERP; % Nia dan Ipon only
         GrandAverage(ch).meanI_ERP =cat(1, GrandAverage(ch).meanI_ERP, temp1); 
-        GrandAverage(ch).meanI_EMD =cat(1, GrandAverage(ch).meanI_EMD, temp2);
-        GrandAverage(ch).avgTotalI_ERP = mean(GrandAverage(ch).meanI_ERP);
-        GrandAverage(ch).avgTotalI_EMD = mean(GrandAverage(ch).meanI_EMD); 
+        GrandAverage(ch).meanI_EMD =cat(1, GrandAverage(ch).meanI_EMD, temp2); 
 
         % NETRAL
         temp1 = SubjekData(ch).meanN_ERP; % Sinyal filter Low
         temp2 = SubjekData(ch).meanN_EMD; % Sinyal filter High
         % temp =  SubjekData(ch).NewMeanN_ERP; % Nia dan Ipon only
         GrandAverage(ch).meanN_ERP =cat(1, GrandAverage(ch).meanN_ERP, temp1); 
-        GrandAverage(ch).meanN_EMD =cat(1, GrandAverage(ch).meanN_EMD, temp2);
-        GrandAverage(ch).avgTotalN_ERP = mean(GrandAverage(ch).meanN_ERP);
-        GrandAverage(ch).avgTotalN_EMD = mean(GrandAverage(ch).meanN_EMD); 
+        GrandAverage(ch).meanN_EMD =cat(1, GrandAverage(ch).meanN_EMD, temp2); 
+ 
     end
-
-    % GRAND AVERAGE UNTUK TIAP KONDISI
-
 end
 
 save(fileTarget, 'GrandAverage');

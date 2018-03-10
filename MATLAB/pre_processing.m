@@ -7,8 +7,8 @@
 % Jaler [21523 (20873), 4894 (4244), 5507 (4857)]            % ADD 650 data (3detik) buffer before start
 % Mudin [14562 (13912), 7158 (6508), 6562 (5912)]            % 6114 ==> 5514
 % Ricahyo [8807 (8157), 5445 (4795), 4699 (4049)]            %
-% Ipon [9342 (8692), 4164 (3514), 10617 (9967)]              %
 % Nia [7637 (6987), 4486 (3836), 3272 (2622)]                %
+% Ipon [9342 (8692), 4164 (3514), 10617 (9967)]              %
 % Peni [10703 (10053), 3961 (3311), 8327 (7677)]			 %
 % Sania [4966 (4316), 3000 (2350), 2146 (1496)]				 %
 % Nia2 [4993 (4343), 5236(4586), 2536(1886)]				 %
@@ -20,7 +20,7 @@ fs = 200;
 
 %% Load Data--------------------------------------------------------------------
 sName = 'Nia2'; %subjectName
-trial = '03'; %trial Number in string
+trial = '03'; %trial Number in string--format 01
 t = 1886;
 nTrial = str2num(trial); %convert string to number for marker
 dName = sprintf('Data/RAW_%s_%s.txt', sName, trial);
@@ -55,8 +55,8 @@ end
 rawStruct(rawDataCell, fileName, nTrial); % lebar data yang disimpan 12650
 
 %% Filter-----------------------------------------------------------------------
-[bBLow, aBLow] = butter(2, [1 5]/(fs/2)); % BPF 0.5-5Hz
-[bBHigh, aBHigh] = butter(2, [1 30]/(fs/2)); % BPF 0.5-30Hz
+[bBLow, aBLow] = butter(2, [0.5 5]/(fs/2)); % BPF 0.5-5Hz
+[bBHigh, aBHigh] = butter(2, [0.5 30]/(fs/2)); % BPF 0.5-30Hz
 [bN, aN] = butter(2, [49 51]/(fs/2), 'stop'); %Notch Filter 49-51
 
 % Convolusi High
