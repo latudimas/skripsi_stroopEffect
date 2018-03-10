@@ -4,9 +4,9 @@ close all;
 clear;
 
 % FEMALE
-load('matdata/GrandAverage_Female.mat');
+% load('matdata/GrandAverage_Female.mat');
 %  MALE
-% load('matdata/GrandAverage_Male.mat');
+load('matdata/GrandAverage_Male.mat');
 
 tPlot = -200:1000/200:799;
 cPlot = ['b', 'g', 'r', 'm', 'k'];
@@ -52,23 +52,42 @@ for ch=1:4
 % %   legend ('Ahmad', 'Jaler', 'Mudin', 'Ricahyo');
 %   legend ('Nia', 'Ipon', 'Peni');
 
-  %% Grand Average Tiap Kondisi
+  %% Grand Average Tiap Kondisi untuk sinyal 0.5-5Hz
   GrandAvgK = mean(GrandAverage(ch).meanK_ERP);
   GrandAvgI = mean(GrandAverage(ch).meanI_ERP);
   GrandAvgN = mean(GrandAverage(ch).meanN_ERP);
+
+  %% Grand Average Tiap Kondisi untuk sinyal 0.5 - 30 Hz
+  avgEmdK = GrandAverage(ch).avgTotalK_EMD;
+  avgEmdI = GrandAverage(ch).avgTotalI_EMD;
+  avgEmdN = GrandAverage(ch).avgTotalN_EMD;
   
   figure;
   plot(tPlot, GrandAvgK, tPlot, GrandAvgI, tPlot, GrandAvgN); % Non Smoothing Data
-  title(sprintf('Grand Average Non-Smooth Female Subject All Condition Channel %d', ch));
+  % title(sprintf('Grand Average 0.5-5Hz Non-Smooth Female Subject All Condition Channel %d', ch));
+  title(sprintf('Grand Average 0.5-5Hz Non-Smooth Male Subject All Condition Channel %d', ch));  
   xlabel('Waktu(ms)'); ylabel('Amplitudo');
   legend('Kongruen', 'Inkongruen', 'Netral');
   
   figure;
   plot(tPlot, smooth(GrandAvgK, n, 'moving'), tPlot, smooth(GrandAvgI, n, 'moving'), tPlot, smooth(GrandAvgN, n, 'moving'));
-  title(sprintf('Grand Average Smooth Female Subject All Condition Channel %d', ch));
+  % title(sprintf('Grand Average 0.5-5Hz Smooth Female Subject All Condition Channel %d', ch));
+  title(sprintf('Grand Average 0.5-5Hz Smooth Male Subject All Condition Channel %d', ch));
   xlabel('Waktu(ms)'); ylabel('Amplitudo');
   legend('Kongruen', 'Inkongruen', 'Netral');
 
+  % figure;
+  % plot(tPlot, avgEmdK, tPlot, avgEmdI, tPlot, avgEmdN);
+  % title(sprintf('Grand Average 0.5-30Hz Non Smooth Female Subject All Condition Channel %d', ch));
+  % xlabel('Waktu(ms)'); ylabel('Amplitudo');
+  % legend('Kongruen', 'Inkongruen', 'Netral');
+
+  figure;
+  plot(tPlot, smooth(avgEmdK, n, 'moving'), tPlot, smooth(avgEmdI, n, 'moving'), tPlot, smooth(avgEmdN, n, 'moving'));
+  % title(sprintf('Grand Average 0.5-30Hz Smooth Female Subject All Condition Channel %d', ch));
+  title(sprintf('Grand Average 0.5-30Hz Smooth Female Subject All Condition Channel %d', ch));
+  xlabel('Waktu(ms)'); ylabel('Amplitudo');
+  legend('Kongruen', 'Inkongruen', 'Netral');
   % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   % GrandAverage(ch).GrandAvg_Kongruen = GrandAvgK;
   % GrandAverage(ch).GrandAvg_Inkongruen = GrandAvgI;
