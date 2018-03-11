@@ -18,7 +18,7 @@ for sub = 1:length(subjek)
     % CHANNEL ITERATION
     for ch = 1:4
         % KONGRUEN
-        temp = SubjekData(ch).meanK_ERP(41:end); % 41 karena data yag terpakai dari detik ke 0 (0-800ms)
+        temp = SubjekData(ch).meanK_ERP(41:end);
         rmsK = rms(temp); % calc RMS signal
         energyK = rmsK*rmsK*N; % hitung energy
         Energy_ERP.Energy_Kongruen(sub, ch) = energyK; 
@@ -32,15 +32,14 @@ for sub = 1:length(subjek)
         % SubjekData(ch).energyI = energyI; % tambah data ke struct
 
         % NETRAL
-        temp = SubjekData(ch).meanN_ERP(41:end);
+        temp = SubjekData(ch).meanN_ERP(201:end);
         rmsN = rms(temp); % calc RMS signal
         energyN = rmsN*rmsN*N; % hitung energy
         Energy_ERP.Energy_Netral(sub, ch) = energyN;
         % SubjekData(ch).energyN = energyN; % tambah data ke struct
     end
+    % save(fileName, 'SubjekData');
 end
-
-save(outputFile, 'Energy_ERP');
 
 % %% FEMALE SUBJECT
 % disp('Process Female Subject Now')
